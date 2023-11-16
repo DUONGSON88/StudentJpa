@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head">
+    <meta charset="UTF-8">
+    <title>Create New Student</title>
+</head>
+<body>
+<center>
+    <h3 class="fontText thead-dark">Form Add New Student</h 1>
+    <br>
+    <table id="students" class="table fontText">
+        <form th:action="@{/students/save}" method="POST" th:object="${student}" novalidate="novalidate" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}"/>
+            <tr >
+                <th class="thead-dark">Name</th>
+                <td class="thead-light">
+                    <input type="text" th:field="*{name}">
+                </td>
+            </tr>
+            <tr>
+                <th class="thead-dark">Image</th>
+                <td><input type="file" th:field="*{image}" class="thead-light"></td>
+            </tr>
+            <tr>
+                <th class="thead-dark">Address</th>
+                <td>
+                    <input type="text" th:field="*{address}" class="thead-light">
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2">
+                    <button class="fontText btn btn-success">Submit</button>
+                </th>
+            </tr>
+        </form>
+    </table>
+</center>
+
+</body>
+</html>

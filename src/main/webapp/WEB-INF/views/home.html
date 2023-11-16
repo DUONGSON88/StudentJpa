@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head" >
+    <meta charset="UTF-8">
+    <title>List Student</title>
+
+</head>
+<body>
+<center>
+    <h3 class="fontText">Student Manager</h3>
+    <a th:href="@{/students/create}" class="fontText">Add New Student</a>
+    <br>
+    <h4 th:text="${message}" style="color: green" id="message"></h4>
+    <br>
+    <form th:action="@{/students/search}" method="get" id="search" >
+        <input type="text" name="search">
+        <button class="fontText btn btn-success">Search</button>
+    </form>
+    <br>
+    <table class="table fontText">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Image</th>
+            <th scope="col" colspan="2">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="row: ${students}" class="thead-light">
+            <td th:text="${row.getId()}" scope="row"></td>
+            <td >
+                <a th:href="@{/students/information/{id}(id=${row.getId()})}" th:text="${row.getName()}" ></a>
+            </td>
+            <td th:text="${row.getAddress()}"></td>
+            <td>
+                <img th:src="@{'/images/'+${row.image}}" alt="image" style="width: 120px"/>
+            </td>
+
+            <td><a th:href="@{/students/update/{id}(id=${row.id})}"><button id="edit" class="btn btn-primary">Edit</button></a></td>
+            <td><a onclick="return confirmDeltete()" th:href="@{/students/delete/{id}(id=${row.id})}"><button id="delete" class="btn btn-danger">Delete</button></a></td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</center>
+<script>
+    setTimeout(()=> {document.getElementById("message").innerHTML =""},3000);
+    function confirmDeltete(){
+        return confirm("Are you ok?")
+    }
+</script>
+</body>
+</html>

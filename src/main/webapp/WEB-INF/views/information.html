@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>Student Information</title>
+</head>
+<body>
+<center>
+<h3 th:text="Information + '  ' + Of + ' ' + ${student.name}" class="fontText"> </h3>
+  <br>
+<p>
+  <a th:href="@{/students}">
+    Back to Student list
+  </a>
+</p>
+  <br>
+<table class="table fontText">
+  <tr class="cus-detail">
+    <th class="thead-dark">Name:</th>
+    <td class="thead-light" th:text="${student.name}"></td>
+  </tr>
+  <tr class="cus-detail">
+    <th class="thead-dark">Image:</th>
+    <td class="thead-light" >
+      <img th:src="@{'/images/'+${student.Image}}" alt="image" style="width: 120px"/>
+    </td>
+  </tr>
+  <tr class="cus-detail">
+    <th class="thead-dark">Address:</th>
+    <td class="thead-light" th:text="${student.address}"></td>
+  </tr>
+</table>
+</center>
+</body>
+</html>
